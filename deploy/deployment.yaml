@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openlibertyapp
+  namespace: development
+  labels:
+    app: openlibertyapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openlibertyapp
+  template:
+    metadata:
+      labels:
+        app: openlibertyapp
+    spec:
+      containers:
+      - name: openlibertyapp
+        image: hub.docker.com/openliberty-docker-local/openliberty-app:1.0
+        ports:
+        - containerPort: 9082
+      imagePullSecrets:
+        - name: registrycredential
